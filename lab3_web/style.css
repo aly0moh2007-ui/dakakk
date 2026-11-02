@@ -1,0 +1,140 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome App</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #dbeafe, #e9d5ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px #0002;
+            text-align: center;
+            width: 320px;
+        }
+
+        h1 {
+            color: #6c63ff;
+        }
+
+        input {
+            padding: 12px;
+            width: 90%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #6c63ff;
+        }
+
+        button {
+            padding: 12px 25px;
+            background: #6c63ff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #5148d9;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            background: #f3f0ff;
+            color: #5148a8;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        li:hover {
+            background: #e0d9ff;
+        }
+
+        p {
+            color: #888;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1 id="title">Welcome z/h1>
+
+        <p>Enter your name to get started!</p>
+
+        <input id="name" placeholder="Your name">
+
+        <br>
+
+        <button id="greet">Greet Me</button>
+
+        <ul id="list"></ul>
+
+        <p>Click a name to say goodbye!</p>
+    </div>
+
+    <script>
+        function addName() {
+            const input = document.getElementById('name');
+            const name = input.value.trim();
+
+            if (!name) return;
+
+            document.getElementById('title').textContent =
+                `Hello, ${name}!`;
+
+            const li = document.createElement('li');
+            li.textContent = name;
+
+            document.getElementById('list').appendChild(li);
+
+            input.value = '';
+        }
+
+        function removeName(e) {
+            if (e.target.nodeName === 'LI') {
+                const name = e.target.textContent;
+
+                document.getElementById('title').textContent =
+                    `Goodbye, ${name}! See you later.`;
+
+                e.target.remove();
+            }
+        }
+
+        document.getElementById('greet')
+            .addEventListener('click', addName);
+
+        document.getElementById('list')
+            .addEventListener('click', removeName);
+    </script>
+
+</body>
+</html>
